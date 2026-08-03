@@ -29,4 +29,18 @@ function moveGoblin() {
 
 const INTERVAL_MS = 1000;
 moveGoblin()
-const interval = setInterval(moveGoblin, INTERVAL_MS)
+let interval = setInterval(moveGoblin, INTERVAL_MS)
+
+const stopGame = document.querySelector('.stop-game')
+stopGame.addEventListener('click', () => {
+    if (interval !== null) {
+    clearInterval(interval);
+    stopGame.textContent='START'
+    stopGame.classList.add('stop-game--paused')
+    interval = null
+    } else {
+    interval = setInterval(moveGoblin, INTERVAL_MS)
+    stopGame.textContent='STOP'
+    stopGame.classList.remove('stop-game--paused')
+    }
+});
