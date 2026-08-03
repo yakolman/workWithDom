@@ -2,8 +2,10 @@ import './styles.css';
 import goblinImage from './goblin.png';
 import createGameField from './createGameField';
 
-const gameField = document.querySelector('.game-field')
-
+const gameField = document.querySelector('.game-field');
+if (!gameField) {
+  throw new Error('Элемент .game-field не найден в DOM');
+}
 
 createGameField(gameField)
 
@@ -20,10 +22,11 @@ function moveGoblin() {
         randomNum = Math.floor(Math.random()*fields.length)
     }
     const randomField = fields[randomNum]
-    randomField.appendChild(newImg)
+    randomField.append(newImg)
     currentPosition = randomNum
     
 }
-moveGoblin()
-setInterval(moveGoblin, 1000)
 
+const INTERVAL_MS = 1000;
+moveGoblin()
+const interval = setInterval(moveGoblin, INTERVAL_MS)

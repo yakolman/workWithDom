@@ -7,3 +7,7 @@ test('testing create 16 fields in game field', () => {
     const fields = gameField.querySelectorAll ('.field')
     expect(fields.length).toBe(16);
 });
+
+test('empty stub test', () => {
+    expect(1).toBe(1);
+  });
