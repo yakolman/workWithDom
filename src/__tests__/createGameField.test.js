@@ -1,5 +1,5 @@
 /** @jest-environment jsdom */
-import createGameField from "../createGameField";
+import createGameField from "../js/createGameField";
 
 test('testing create 16 fields in game field', () => {
     const gameField = document.createElement('div');
@@ -10,4 +10,4 @@ test('testing create 16 fields in game field', () => {
 
 test('empty stub test', () => {
     expect(1).toBe(1);
-  });
+});

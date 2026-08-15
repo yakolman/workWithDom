@@ -1,7 +1,6 @@
-import './styles.css';
-import goblinImage from './goblin.png';
-import goblinImage2 from './goblin2.png';
-import createGameField from './createGameField';
+import '../css/styles.css';
+import goblinImage from '../image/goblin.png';
+import createGameField from './createGameField.js';
 
 const gameField = document.querySelector('.game-field');
 const countMissedElement = document.querySelector('.count-missed');
@@ -17,6 +16,7 @@ createGameField(gameField)
 const newImg = document.createElement('img')
 newImg.className = 'image'
 newImg.setAttribute('src', goblinImage)
+newImg.setAttribute('alt', 'image goblin');
 
 const fields = gameField.querySelectorAll ('.field')
 
@@ -24,13 +24,14 @@ let currentPosition = null;
 let clickOnGoblin = false;
 let countMissed = 0;
 let countHits = 0;
+const maxMissed = 5;
 
 function moveGoblin() {
     if (clickOnGoblin === false && currentPosition!== null) {
         countMissed+=1
     }
     countMissedElement.textContent = `Количество промахов: ${countMissed}`
-    if (countMissed === 5) {
+    if (countMissed === maxMissed) {
         clearInterval(interval);
         newImg.remove();
         wasted.style.display = 'block'
@@ -57,14 +58,7 @@ newImg.addEventListener('click', () => {
     }
     countHitsElement.textContent = `Количество попаданий: ${countHits}`
     clickOnGoblin = true
-    clearInterval(interval);
-    newImg.setAttribute('src', goblinImage2)
-    setTimeout(()=> {
-        newImg.setAttribute('src', goblinImage);
-        newImg.remove();
-        moveGoblin();
-        interval = setInterval(moveGoblin, INTERVAL_MS);
-    }, 300)
+    newImg.remove()
 })
 
 restart.addEventListener('click', () => {
