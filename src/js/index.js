@@ -38,10 +38,8 @@ function moveGoblin() {
         restart.style.display = 'block'
         return
     }
-    let randomNum = Math.floor(Math.random()*fields.length)
-    while (randomNum === currentPosition) {
-        randomNum = Math.floor(Math.random()*fields.length)
-    }
+    let randomNum;
+    do {randomNum = Math.floor(Math.random()*fields.length)} while (randomNum === currentPosition) 
     const randomField = fields[randomNum]
     randomField.append(newImg)
     currentPosition = randomNum
